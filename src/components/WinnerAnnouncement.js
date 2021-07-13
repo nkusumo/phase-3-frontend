@@ -1,9 +1,12 @@
 function WinnerAnnouncement() {
-    return (
-      <>
-      
-      </>
-    )
-  }
+
+  const [winningMovie, setWinningMovie] = useState({});
   
-  export default WinnerAnnouncement;
+  return (
+    <>
+    
+    </>
+  )
+}
+
+export default WinnerAnnouncement;

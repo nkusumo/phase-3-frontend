@@ -1,9 +1,11 @@
 function NewGroup() {
-    return (
-      <>
-      
-      </>
-    )
-  }
-  
-  export default NewGroup;
+
+  // controlled inputs states
+  return (
+    <>
+    
+    </>
+  )
+}
+
+export default NewGroup;

@@ -1,9 +1,12 @@
 function UserVotes() {
-    return (
-      <>
-      
-      </>
-    )
-  }
+
+  // controlled form states
   
-  export default UserVotes;
+  return (
+    <>
+    
+    </>
+  )
+}
+
+export default UserVotes;
