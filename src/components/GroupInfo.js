@@ -9,7 +9,6 @@ function GroupInfo({currentGroup}) {
     const [currentVoter, setCurrentVoter] = useState('')
 
     useEffect(() => {
-        console.log('I happened')
         fetch(`http://localhost:9393/groups/${currentGroup}/movies`)
         .then(resp => resp.json())
         .then(setMovieList)
@@ -20,11 +19,32 @@ function GroupInfo({currentGroup}) {
       }, [currentGroup])
 
 
-      function handleClick(e) {
+    function handleClick(e) {
         setCurrentVoter(0)
-        console.log("click")
     }
-    console.log(currentVoter)
+
+    function handleVoteSubmission(ranking) {
+        console.log(ranking)
+        console.log(currentVoter)
+        let userID = groupUsers[currentVoter].id
+        let groupID = currentGroup
+
+        console.log({...ranking, user_id: userID, group_id: groupID})
+
+        fetch('http://localhost:9393/votes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...ranking,
+                user_id: userID,
+                group_id: groupID
+            })
+        })
+
+        setCurrentVoter(currentVoter => currentVoter += 1)
+    }
     
     return(
         <>
@@ -32,14 +52,14 @@ function GroupInfo({currentGroup}) {
             <div>
                 <h2>Group Members</h2>
                 <ul>
-                    {groupUsers.map(user => <li>{user.name}</li>)}
+                    {groupUsers.map(user => <li key={user.id}>{user.name}</li>)}
                 </ul>
             </div>
             <div>
                 <h2>Candidate Movies</h2>
-                {movieList.map(movie => <MovieCard movie={movie} />)}
+                {movieList.map(movie => <MovieCard key={movie.id} movie={movie} />)}
             </div>
-            {currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
+            {currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting handleVoteSubmission={handleVoteSubmission} lastVoter={currentVoter === groupUsers.length - 1} currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
         </>
     )
 }
