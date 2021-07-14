@@ -23,9 +23,7 @@ function GroupInfo({currentGroup}) {
         setCurrentVoter(0)
     }
 
-    function handleVoteSubmission(ranking) {
-        console.log(ranking)
-        console.log(currentVoter)
+    function handleNotLastVote(ranking) {
         let userID = groupUsers[currentVoter].id
         let groupID = currentGroup
 
@@ -42,8 +40,30 @@ function GroupInfo({currentGroup}) {
                 group_id: groupID
             })
         })
-
+        .then(resp => resp.json())
+        .then(console.log)
         setCurrentVoter(currentVoter => currentVoter += 1)
+    }
+
+    function handleLastVote(ranking) {
+        let userID = groupUsers[currentVoter].id
+        let groupID = currentGroup
+
+        console.log({...ranking, user_id: userID, group_id: groupID})
+
+        fetch('http://localhost:9393/votes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...ranking,
+                user_id: userID,
+                group_id: groupID
+            })
+        })
+        .then(resp => resp.json())
+        .then(console.log)
     }
     
     return(
@@ -59,7 +79,7 @@ function GroupInfo({currentGroup}) {
                 <h2>Candidate Movies</h2>
                 {movieList.map(movie => <MovieCard key={movie.id} movie={movie} />)}
             </div>
-            {currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting handleVoteSubmission={handleVoteSubmission} lastVoter={currentVoter === groupUsers.length - 1} currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
+            {currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting handleNotLastVote={handleNotLastVote} handleLastVote={handleLastVote} lastVoter={currentVoter === groupUsers.length - 1} currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
         </>
     )
 }

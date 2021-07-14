@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function GroupVoting({currentVoter, movieList, lastVoter, handleVoteSubmission}) {
+function GroupVoting({currentVoter, movieList, lastVoter, handleNotLastVote, handleLastVote}) {
 
     const [ranking, setRanking] = useState({first: 'default', second: 'default', third: 'default'});
 
@@ -19,7 +19,7 @@ function GroupVoting({currentVoter, movieList, lastVoter, handleVoteSubmission})
                 e.preventDefault()
                 let userRanks = {...ranking}
                 setRanking({first: 'default', second: 'default', third: 'default'})
-                !lastVoter ? handleVoteSubmission(userRanks) : console.log('I was the last voter!')
+                !lastVoter ? handleNotLastVote(userRanks) : handleLastVote(userRanks)
             }}>
             <label>Rank 1: </label>
             <select name="first" onChange={handleChange} value={ranking.first}>
