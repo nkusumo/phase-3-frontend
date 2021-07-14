@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 import MovieCard from './MovieCard'
 
 function NewGroup({userList, currentName, currentUser, apiKey}) {
@@ -8,6 +9,8 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
   const [groupMembers, setGroupMembers] = useState([currentUser])
   const [movieName, setMovieName] = useState('')
   const [movieList, setMovieList] = useState([])
+
+  let history = useHistory()
 
   function handleGroupName(e) {
     setGroupName(e.target.value)
@@ -85,7 +88,7 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
       body: JSON.stringify(groupContents)
     })
     .then(resp => resp.json())
-    .then(console.log)
+    .then(() => history.push("/group-page"))
   }
 
   return (

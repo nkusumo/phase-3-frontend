@@ -35,6 +35,21 @@ function App() {
     history.push("/")
   }
 
+  function handleNewUser(name) {
+    fetch('http://localhost:9393/new-user', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({name: name})
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      let updatedUserList = [...userList, data]
+      setUserList(updatedUserList)
+    })
+  }
+
   return (
     <>
     <NavBar currentName={currentName} handleLogout={handleLogout}/>
@@ -43,7 +58,7 @@ function App() {
           <Home currentName={currentName}/>
         </Route>
         <Route exact path="/login">
-          <Login userList={userList} handleLogin={handleLogin}/>
+          <Login userList={userList} handleLogin={handleLogin} handleNewUser={handleNewUser} />
         </Route> 
         <Route exact path="/group-page">
           <GroupPage currentName={currentName} currentUser={currentUser}/>
