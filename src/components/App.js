@@ -29,9 +29,15 @@ function App() {
     history.push('/group-page')
   }
 
+  function handleLogout() {
+    setCurrentUser('')
+    setCurrentName('')
+    history.push("/")
+  }
+
   return (
     <>
-    <NavBar />
+    <NavBar currentName={currentName} handleLogout={handleLogout}/>
       <Switch>
         <Route exact path="/">
           <Home currentName={currentName}/>

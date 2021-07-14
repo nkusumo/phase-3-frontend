@@ -4,10 +4,13 @@ function Login({userList, handleLogin}) {
   
   return (
     <>
+      <br/>
+      <label>Who are you?</label>
       <select onChange={handleLogin} defaultValue="default">
         <option value="default" disabled>Select here</option>
         {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
       </select>
+      
     </>
   )
 }

@@ -1,11 +1,12 @@
 import {NavLink} from 'react-router-dom'
 
-function NavBar() {
+function NavBar({currentName, handleLogout}) {
     return (
       <>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/login">Login</NavLink>
-        <NavLink to="/group-page">Group Page</NavLink>
+        <NavLink to={currentName !== '' ? "/group-page" : "/login"}>Group Page</NavLink>
+        {currentName !== '' ? <button onClick={handleLogout}>Logout</button> : null}
       </>
     )
   }
