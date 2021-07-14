@@ -63,7 +63,11 @@ function GroupInfo({currentGroup}) {
             })
         })
         .then(resp => resp.json())
-        .then(console.log)
+        .then(() => {
+            fetch(`http://localhost:9393/winner/${groupID}`)
+            .then(resp => resp.json())
+            .then(console.log)
+        })
     }
     
     return(

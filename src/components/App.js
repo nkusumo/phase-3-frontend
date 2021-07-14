@@ -4,8 +4,11 @@ import Login from './Login'
 import Home from './Home'
 import GroupPage from './GroupPage'
 import NavBar from './NavBar'
+import NewGroup from './NewGroup'
 
 function App() {
+
+  const apiKey = ""
 
   const [currentUser, setCurrentUser] = useState('');
   const [currentName, setCurrentName] = useState('')
@@ -36,8 +39,11 @@ function App() {
         <Route exact path="/login">
           <Login userList={userList} handleLogin={handleLogin}/>
         </Route> 
-        <Route>
+        <Route exact path="/group-page">
           <GroupPage currentName={currentName} currentUser={currentUser}/>
+        </Route>
+        <Route exact path="/new-group">
+          <NewGroup userList={userList} currentName={currentName} currentUser={currentUser} apiKey={apiKey}/>
         </Route>
       </Switch>
     </>

@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import GroupSelect from './GroupSelect';
 import GroupInfo from './GroupInfo'
+import { useHistory } from "react-router";
 
 function GroupPage({currentName, currentUser}) {
 
   const [currentGroup, setCurrentGroup] = useState('');
   const [groupList, setGroupList] = useState([]);
+
+  let history = useHistory()
 
   useEffect(() => {
     console.log('I happened')
@@ -18,9 +21,10 @@ function GroupPage({currentName, currentUser}) {
     <>
       <h1>Welcome {currentName}!</h1>
       <GroupSelect groupList={groupList} setCurrentGroup={setCurrentGroup} />
+      <button onClick={() => history.push('/new-group')}>Create a new group</button>
       {currentGroup ? <GroupInfo currentGroup={currentGroup} /> : null}
     </>
   )
 }
   
-  export default GroupPage;
+export default GroupPage;
