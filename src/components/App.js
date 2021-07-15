@@ -8,7 +8,7 @@ import NewGroup from './NewGroup'
 
 function App() {
 
-  const apiKey = ""
+  const apiKey = "ac28338d4dmsh13d66423c106306p1f7b1djsn2bb12058a05c"
 
   const [currentUser, setCurrentUser] = useState('');
   const [currentName, setCurrentName] = useState('')

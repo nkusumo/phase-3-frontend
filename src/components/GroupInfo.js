@@ -7,15 +7,29 @@ function GroupInfo({currentGroup}) {
     const [movieList, setMovieList] = useState([]);
     const [groupUsers, setGroupUsers] = useState([]);
     const [currentVoter, setCurrentVoter] = useState('')
+    const [winnerChosen, setWinnerChosen] = useState(false)
+    const [winner, setWinner] = useState({})
 
     useEffect(() => {
+        setWinnerChosen(false)
+
         fetch(`http://localhost:9393/groups/${currentGroup}/movies`)
         .then(resp => resp.json())
         .then(setMovieList)
 
         fetch(`http://localhost:9393/groups/${currentGroup}/users`)
         .then(resp => resp.json())
-        .then(setGroupUsers) 
+        .then(setGroupUsers)
+        
+        fetch(`http://localhost:9393/groups/${currentGroup}/winner`)
+        .then(resp => resp.json())
+        .then(movie => {
+            if(movie.title){
+                setWinnerChosen(true)
+                setWinner(movie)
+            }
+        })
+        
       }, [currentGroup])
 
 
@@ -66,24 +80,29 @@ function GroupInfo({currentGroup}) {
         .then(() => {
             fetch(`http://localhost:9393/winner/${groupID}`)
             .then(resp => resp.json())
-            .then(console.log)
+            .then((winner) => {
+                setWinnerChosen(true)
+                setWinner(winner)
+            })
         })
     }
-    
+
+    let lastVoter=currentVoter === groupUsers.length - 1
+
     return(
         <>
-            <h1>Hi {currentGroup}</h1>
+            <h1>Welcome {currentGroup}</h1>
             <div>
                 <h2>Group Members</h2>
                 <ul>
                     {groupUsers.map(user => <li key={user.id}>{user.name}</li>)}
                 </ul>
             </div>
+            {winnerChosen ? <div><h2>Winning Movie:</h2><MovieCard movie={winner}/> </div>: currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting handleNotLastVote={handleNotLastVote} handleLastVote={handleLastVote} lastVoter={lastVoter} currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
             <div>
                 <h2>Candidate Movies</h2>
                 {movieList.map(movie => <MovieCard key={movie.id} movie={movie} />)}
             </div>
-            {currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting handleNotLastVote={handleNotLastVote} handleLastVote={handleLastVote} lastVoter={currentVoter === groupUsers.length - 1} currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
         </>
     )
 }
