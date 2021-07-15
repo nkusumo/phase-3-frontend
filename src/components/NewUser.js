@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function NewUser({handleNewUser}) {
+function NewUser({handleNewUser, setUserForm}) {
 
   const [newName, setNewName] = useState('')
 
@@ -12,7 +12,10 @@ function NewUser({handleNewUser}) {
     <>
       <form onSubmit={(e) => {
         e.preventDefault()
-        handleNewUser(newName)
+        setUserForm(false)
+        let name = newName
+        setNewName('')
+        handleNewUser(name)
       }}>
         <input type="text" value={newName} onChange={handleChange} />
         <input type="submit" value="Add User" />

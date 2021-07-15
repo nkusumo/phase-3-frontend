@@ -14,7 +14,7 @@ function Login({userList, handleLogin, handleNewUser}) {
         {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
       </select>
       <button onClick={() => setUserForm(!userForm)}>{!userForm ? "Add a new user" : "Hide new user form"}</button>
-      {userForm ? <NewUser handleNewUser={handleNewUser} /> : null}
+      {userForm ? <NewUser handleNewUser={handleNewUser} setUserForm={setUserForm}/> : null}
     </>
   )
 }
