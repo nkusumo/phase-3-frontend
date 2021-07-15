@@ -8,7 +8,7 @@ function Login({userList, handleLogin, handleNewUser}) {
   return (
     <div className="loginPage">
       <h3>Who are you?</h3>
-      <select onChange={handleLogin} defaultValue="default">
+      <select className="userSelect" onChange={handleLogin} defaultValue="default">
         <option value="default" disabled>Select here</option>
         {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
       </select>

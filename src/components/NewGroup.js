@@ -124,29 +124,25 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
   }
 
   return (
-    <>
-      <br />
-      <button onClick={createNewGroup}>Create Group</button>
+    <div id="newgroup">
+      <button onClick={createNewGroup}>Create Group</button><br />
       <label>Enter your new group name:</label>
-      <input type="text" onChange={handleGroupName} value={groupName}></input>
-      <br />
+      <input type="text" onChange={handleGroupName} value={groupName}></input><br />
       <label>Add your group members:</label>
-      <select onChange={addMember} defaultValue="default">
+      <select className="userSelect" onChange={addMember} defaultValue="default">
         <option value="default" disabled>Select here</option>
         {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
       </select>
       <h3>Group Members</h3>
-      <ul>
-        {groupMembers.map(id => <li key={id}>{getUserNames(id)}{id !== currentUser ? <button onClick={() => removeMember(id)}>X</button> : null}</li>)}
-      </ul>
+        {groupMembers.map(id => <p key={id}>{getUserNames(id)}{id !== currentUser ? <button onClick={() => removeMember(id)}>X</button> : null}</p>)}
       <h3>Add your movie candidates</h3>
       <form onSubmit={searchMovies}>
         <input type="text" onChange={handleMovie} value={movieName}></input>
-        <input type="submit" value="Add Movie"></input>
+        <input type="submit" value="Search Movie"></input>
       </form>
       {movieChoiceDisplay ? movieChoiceList.map(movie => <MovieChoices key={movie.Title} movie={movie} pickMovie={pickMovie}/>) : null}
-      {movieList.map(movie => <div key={movie.title}><MovieCard movie={movie}/><button onClick={() => removeMovie(movie.title)}>X</button></div>)}
-    </>
+      {movieList.map(movie => <div className="movieCandidate" key={movie.title}><MovieCard movie={movie}/><button onClick={() => removeMovie(movie.title)}>X</button></div>)}
+    </div>
   )
 }
 

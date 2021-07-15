@@ -8,7 +8,7 @@ import NewGroup from './NewGroup'
 
 function App() {
 
-  const apiKey = "ac28338d4dmsh13d66423c106306p1f7b1djsn2bb12058a05c"
+  const apiKey = "8d00e327c2msh3f1630ed688dfbbp1ac923jsn91a877ffb440"
 
   const [currentUser, setCurrentUser] = useState('');
   const [currentName, setCurrentName] = useState('')
@@ -53,20 +53,22 @@ function App() {
   return (
     <>
     <NavBar currentName={currentName} handleLogout={handleLogout}/>
-      <Switch>
-        <Route exact path="/">
-          <Home currentName={currentName}/>
-        </Route>
-        <Route exact path="/login">
-          <Login userList={userList} handleLogin={handleLogin} handleNewUser={handleNewUser} />
-        </Route> 
-        <Route exact path="/group-page">
-          <GroupPage currentName={currentName} currentUser={currentUser}/>
-        </Route>
-        <Route exact path="/new-group">
-          <NewGroup userList={userList} currentName={currentName} currentUser={currentUser} apiKey={apiKey}/>
-        </Route>
-      </Switch>
+      <div id="mainContent">
+        <Switch>
+          <Route exact path="/">
+            <Home currentName={currentName}/>
+          </Route>
+          <Route exact path="/login">
+            <Login userList={userList} handleLogin={handleLogin} handleNewUser={handleNewUser} />
+          </Route> 
+          <Route exact path="/group-page">
+            <GroupPage currentName={currentName} currentUser={currentUser}/>
+          </Route>
+          <Route exact path="/new-group">
+            <NewGroup userList={userList} currentName={currentName} currentUser={currentUser} apiKey={apiKey}/>
+          </Route>
+        </Switch>
+      </div>
     </>
   )
 }

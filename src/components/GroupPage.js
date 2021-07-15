@@ -17,12 +17,16 @@ function GroupPage({currentName, currentUser}) {
     .then(setGroupList)
   }, [currentUser])
 
+  let groupName = currentGroup ? groupList.find(group => group.id == currentGroup).group_name : ''
+
   return (
     <>
-      <h1>Welcome {currentName}!</h1>
-      <GroupSelect groupList={groupList} setCurrentGroup={setCurrentGroup} />
-      <button onClick={() => history.push('/new-group')}>Create a new group</button>
-      {currentGroup ? <GroupInfo currentGroup={currentGroup} /> : null}
+      <h1>Welcome, {currentName}!</h1>
+      <div id="groupSelect">
+        <GroupSelect groupList={groupList} setCurrentGroup={setCurrentGroup} />
+        <button onClick={() => history.push('/new-group')}>Create a new group</button>
+      </div>
+      {currentGroup ? <GroupInfo currentGroup={currentGroup} groupName={groupName}/> : null}
     </>
   )
 }

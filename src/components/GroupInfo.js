@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import GroupVoting from './GroupVoting';
 import MovieCard from './MovieCard'
 
-function GroupInfo({currentGroup}) {
+function GroupInfo({currentGroup, groupName}) {
 
     const [movieList, setMovieList] = useState([]);
     const [groupUsers, setGroupUsers] = useState([]);
@@ -90,20 +90,18 @@ function GroupInfo({currentGroup}) {
     let lastVoter=currentVoter === groupUsers.length - 1
 
     return(
-        <>
-            <h1>Welcome {currentGroup}</h1>
+        <div id="groupInfo">
+            <h1>Welcome, {groupName}</h1>
             <div>
                 <h2>Group Members</h2>
-                <ul>
-                    {groupUsers.map(user => <li key={user.id}>{user.name}</li>)}
-                </ul>
+                {groupUsers.map(user => <p key={user.id}>{user.name}</p>)}
             </div>
-            {winnerChosen ? <div><h2>Winning Movie:</h2><MovieCard movie={winner}/> </div>: currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting handleNotLastVote={handleNotLastVote} handleLastVote={handleLastVote} lastVoter={lastVoter} currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
-            <div>
+            {winnerChosen ? <div id="winner"><h2>Winning Movie:</h2><MovieCard movie={winner}/> </div>: currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting handleNotLastVote={handleNotLastVote} handleLastVote={handleLastVote} lastVoter={lastVoter} currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
+            <div id="groupMovies">
                 <h2>Candidate Movies</h2>
                 {movieList.map(movie => <MovieCard key={movie.id} movie={movie} />)}
             </div>
-        </>
+        </div>
     )
 }
 

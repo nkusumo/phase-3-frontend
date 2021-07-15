@@ -1,11 +1,11 @@
 function MovieCard({movie}) {
     return(
-        <>
-            <h3>{movie.title} ({movie.release_date})</h3>
-            <img src={movie.image} alt={movie.title}></img><br />
-            <small>IMDB rating: {movie.rating}</small><br />
+        <div className="card">
+            <h4>{movie.title} ({movie.release_date})</h4>
+            <img src={movie.image} alt={movie.title}></img>
+            <small>IMDB rating: {movie.rating}</small>
             <small>Genre: {movie.genre}</small>
-        </>
+        </div>
     )
 }
 
