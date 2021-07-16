@@ -5,10 +5,12 @@ import Home from './Home'
 import GroupPage from './GroupPage'
 import NavBar from './NavBar'
 import NewGroup from './NewGroup'
+import Footer from "./Footer";
+import Banner from "./Banner";
 
 function App() {
 
-  const apiKey = "8d00e327c2msh3f1630ed688dfbbp1ac923jsn91a877ffb440"
+  const apiKey = ""
 
   const [currentUser, setCurrentUser] = useState('');
   const [currentName, setCurrentName] = useState('')
@@ -52,6 +54,7 @@ function App() {
 
   return (
     <>
+    <Banner />
     <NavBar currentName={currentName} handleLogout={handleLogout}/>
       <div id="mainContent">
         <Switch>
@@ -69,6 +72,7 @@ function App() {
           </Route>
         </Switch>
       </div>
+    <Footer />
     </>
   )
 }

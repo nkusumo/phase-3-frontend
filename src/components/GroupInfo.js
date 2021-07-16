@@ -92,7 +92,7 @@ function GroupInfo({currentGroup, groupName}) {
     return(
         <div id="groupInfo">
             <h1>Welcome, {groupName}</h1>
-            <div>
+            <div id="groupMembers">
                 <h2>Group Members</h2>
                 {groupUsers.map(user => <p key={user.id}>{user.name}</p>)}
             </div>

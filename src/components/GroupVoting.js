@@ -21,24 +21,30 @@ function GroupVoting({currentVoter, movieList, lastVoter, handleNotLastVote, han
                 setRanking({first: 'default', second: 'default', third: 'default'})
                 !lastVoter ? handleNotLastVote(userRanks) : handleLastVote(userRanks)
             }}>
-            <label>Rank 1: </label>
-            <select name="first" onChange={handleChange} value={ranking.first}>
-                <option value="default" disabled>Select here</option>
-                {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
-            </select>
-            <br />
-            <label>Rank 2: </label>
-            <select name="second" onChange={handleChange} value={ranking.second}>
-                <option value="default" disabled>Select here</option>
-                {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
-            </select>
-            <br />
-            <label>Rank 3: </label>
-            <select name="third" onChange={handleChange} value={ranking.third}>
-                <option value="default" disabled>Select here</option>
-                {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
-            </select>
-            {!lastVoter ? <input type="submit" value="Submit your votes!"></input> : <input type="submit" value="Calculate Winner!"></input>}
+            <div id="flexVote">
+                <div className ="flexVoteChild">
+                    <label>Rank 1: </label>
+                    <select name="first" onChange={handleChange} value={ranking.first}>
+                        <option value="default" disabled>Select here</option>
+                        {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
+                    </select>
+                    <br />
+                    <label>Rank 2: </label>
+                    <select name="second" onChange={handleChange} value={ranking.second}>
+                        <option value="default" disabled>Select here</option>
+                        {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
+                    </select>
+                    <br />
+                    <label>Rank 3: </label>
+                    <select name="third" onChange={handleChange} value={ranking.third}>
+                        <option value="default" disabled>Select here</option>
+                        {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
+                    </select>
+                </div>
+                <div className ="flexVoteChild">
+                    {!lastVoter ? <input type="submit" value="Submit your votes!"></input> : <input type="submit" value="Calculate Winner!"></input>}
+                </div>
+            </div>
         </form>
         </>
     )

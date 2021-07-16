@@ -23,8 +23,8 @@ function GroupPage({currentName, currentUser}) {
     <>
       <h1>Welcome, {currentName}!</h1>
       <div id="groupSelect">
-        <GroupSelect groupList={groupList} setCurrentGroup={setCurrentGroup} />
-        <button onClick={() => history.push('/new-group')}>Create a new group</button>
+        <GroupSelect className="groupSelectChild" groupList={groupList} setCurrentGroup={setCurrentGroup} />
+        <button className="groupSelectChild" onClick={() => history.push('/new-group')}>Create a new group</button>
       </div>
       {currentGroup ? <GroupInfo currentGroup={currentGroup} groupName={groupName}/> : null}
     </>

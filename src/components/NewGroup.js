@@ -125,23 +125,27 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
 
   return (
     <div id="newgroup">
-      <button onClick={createNewGroup}>Create Group</button><br />
-      <label>Enter your new group name:</label>
-      <input type="text" onChange={handleGroupName} value={groupName}></input><br />
-      <label>Add your group members:</label>
+      <button onClick={createNewGroup}>Create Group</button><br /><br/>
+      <label>Enter your new group name:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" onChange={handleGroupName} value={groupName}></input><br /><br />
+      <label>Add your group members:</label>&nbsp;&nbsp;&nbsp;&nbsp;
       <select className="userSelect" onChange={addMember} defaultValue="default">
         <option value="default" disabled>Select here</option>
         {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
       </select>
       <h3>Group Members</h3>
-        {groupMembers.map(id => <p key={id}>{getUserNames(id)}{id !== currentUser ? <button onClick={() => removeMember(id)}>X</button> : null}</p>)}
+        {groupMembers.map(id => <p key={id}>{getUserNames(id)}&nbsp;&nbsp;{id !== currentUser ? <button onClick={() => removeMember(id)}>X</button> : null}</p>)}
       <h3>Add your movie candidates</h3>
       <form onSubmit={searchMovies}>
         <input type="text" onChange={handleMovie} value={movieName}></input>
         <input type="submit" value="Search Movie"></input>
       </form>
-      {movieChoiceDisplay ? movieChoiceList.map(movie => <MovieChoices key={movie.Title} movie={movie} pickMovie={pickMovie}/>) : null}
-      {movieList.map(movie => <div className="movieCandidate" key={movie.title}><MovieCard movie={movie}/><button onClick={() => removeMovie(movie.title)}>X</button></div>)}
+        {movieChoiceDisplay ?  <div><h2>Which Movie Did You Want?</h2>{movieChoiceList.map(movie => <MovieChoices key={movie.Title} movie={movie} pickMovie={pickMovie}/>) }</div>: null}
+      {movieList.length > 0 ?
+      <div>
+        <h2>Picked Movies:</h2>
+        {movieList.map(movie => <div className="movieCandidate" key={movie.title}><MovieCard movie={movie}/><button onClick={() => removeMovie(movie.title)}>X</button></div>)}
+      </div> : null }
     </div>
   )
 }
