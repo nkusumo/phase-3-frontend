@@ -3,6 +3,10 @@ import { useHistory } from "react-router";
 import MovieCard from './MovieCard'
 import MovieChoices from './MovieChoices'
 
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 function NewGroup({userList, currentName, currentUser, apiKey}) {
 
   // controlled inputs states
@@ -129,10 +133,11 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
       <label>Enter your new group name:</label>&nbsp;&nbsp;&nbsp;&nbsp;
       <input type="text" onChange={handleGroupName} value={groupName}></input><br /><br />
       <label>Add your group members:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-      <select className="userSelect" onChange={addMember} defaultValue="default">
-        <option value="default" disabled>Select here</option>
-        {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
-      </select>
+        <FormControl variant="outlined">
+          <Select onChange={addMember}>
+            {userList.map(user => <MenuItem value={user.id} key={user.id}>{user.name}</MenuItem>)}
+          </Select>
+        </FormControl>
       <h3>Group Members</h3>
         {groupMembers.map(id => <p key={id}>{getUserNames(id)}&nbsp;&nbsp;{id !== currentUser ? <button onClick={() => removeMember(id)}>X</button> : null}</p>)}
       <h3>Add your movie candidates</h3>

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 function GroupVoting({currentVoter, movieList, lastVoter, handleNotLastVote, handleLastVote}) {
 
@@ -23,23 +26,26 @@ function GroupVoting({currentVoter, movieList, lastVoter, handleNotLastVote, han
             }}>
             <div id="flexVote">
                 <div className ="flexVoteChild">
-                    <label>Rank 1: </label>
-                    <select name="first" onChange={handleChange} value={ranking.first}>
-                        <option value="default" disabled>Select here</option>
-                        {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
-                    </select>
+                    <label>Rank 1: </label>&nbsp;&nbsp;
+                    <FormControl variant="outlined">
+                        <Select name="first" onChange={handleChange} value={ranking.first}>
+                            {movieList.map(movie => <MenuItem key={movie.id} value={movie.id}>{movie.title}</MenuItem>)}
+                        </Select>
+                    </FormControl>
                     <br />
-                    <label>Rank 2: </label>
-                    <select name="second" onChange={handleChange} value={ranking.second}>
-                        <option value="default" disabled>Select here</option>
-                        {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
-                    </select>
+                    <label>Rank 2: </label>&nbsp;&nbsp;
+                    <FormControl variant="outlined">
+                        <Select name="second" onChange={handleChange} value={ranking.second}>
+                            {movieList.map(movie => <MenuItem key={movie.id} value={movie.id}>{movie.title}</MenuItem>)}
+                        </Select>
+                    </FormControl>
                     <br />
-                    <label>Rank 3: </label>
-                    <select name="third" onChange={handleChange} value={ranking.third}>
-                        <option value="default" disabled>Select here</option>
-                        {movieList.map(movie => <option key={movie.id} value={movie.id}>{movie.title}</option>)}
-                    </select>
+                    <label>Rank 3: </label>&nbsp;&nbsp;
+                    <FormControl variant="outlined">
+                        <Select name="third" onChange={handleChange} value={ranking.third}>
+                            {movieList.map(movie => <MenuItem key={movie.id} value={movie.id}>{movie.title}</MenuItem>)}
+                        </Select>
+                    </FormControl>
                 </div>
                 <div className ="flexVoteChild">
                     {!lastVoter ? <input type="submit" value="Submit your votes!"></input> : <input type="submit" value="Calculate Winner!"></input>}

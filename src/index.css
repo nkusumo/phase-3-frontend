@@ -230,3 +230,7 @@ img {
 .homeContent {
 
 }
+
+.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input {
+  width: 250px;
+}
