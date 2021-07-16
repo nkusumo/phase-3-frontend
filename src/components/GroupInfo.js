@@ -92,13 +92,13 @@ function GroupInfo({currentGroup, groupName}) {
     return(
         <div id="groupInfo">
             <h1>Welcome, {groupName}</h1>
-            <div id="groupMembers">
+            <div className="groupMembers">
                 <h2>Group Members</h2>
                 {groupUsers.map(user => <p key={user.id}>{user.name}</p>)}
             </div>
             {winnerChosen ? <div id="winner"><h2>Winning Movie:</h2><MovieCard movie={winner}/> </div>: currentVoter==='' ? <button onClick={handleClick}>Start Voting!</button> : <GroupVoting handleNotLastVote={handleNotLastVote} handleLastVote={handleLastVote} lastVoter={lastVoter} currentVoter={groupUsers[currentVoter]} movieList={movieList}/>}
             <div id="groupMovies">
-                <h2>Candidate Movies</h2>
+                <h2>Candidate Movies:</h2>
                 {movieList.map(movie => <MovieCard key={movie.id} movie={movie} />)}
             </div>
         </div>

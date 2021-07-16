@@ -43,6 +43,7 @@ code {
 .nav-link:hover {
   background-color: rgb(126, 126, 155);
   color: white;
+  font-weight: bold;
 }
 
 #logout {
@@ -57,6 +58,13 @@ code {
   border-radius: 8px;
   align-self: flex-start;
   margin-left: auto;
+  background-color: rgb(20, 20, 30);
+  border: none;
+}
+
+#logout:hover {
+  background-color: rgb(126, 126, 155);
+  color: white;
 }
 
 .loginPage {
@@ -65,42 +73,39 @@ code {
 }
 
 button {
-  background-color: white;
+  background-color: rgb(234, 240, 255);
   color: black;
-  border: 2px solid #74b2ff;
-  padding: 2px 2px;
+  border: 2px solid rgb(126, 126, 155);
+  padding: 6px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   margin: 2px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 button:hover {
-  background-color: #74b2ff;
-  color: white;
+  font-weight: bold;
 }
 
 input[type="submit"] {
-  background-color: white;
+  background-color: rgb(234, 240, 255);
   color: black;
-  border: 2px solid #74b2ff;
-  padding: 16px 32px;
+  border: 2px solid rgb(126, 126, 155);
+  padding: 6px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 2px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 8px;
-  align-self: flex-start;
+  border-radius: 4px;
 }
 
 input[type="submit"]:hover {
-  background-color: #74b2ff;
-  color: white;
+  font-weight: bold;
 }
 
 select .userSelect {
@@ -145,6 +150,7 @@ select .userSelect {
   height: 25rem;
   display: inline-grid;
   margin: 1rem 2rem;
+  font-weight: bold;
 }
 
 img {
@@ -166,7 +172,8 @@ img {
 }
 
 #newgroup {
-  text-align: center
+  text-align: center;
+  padding-bottom: 30px; 
 }
 
 .movieCandidate {
@@ -194,19 +201,22 @@ img {
   margin-right: 20px;
 }
 
-#groupMembers {
+.groupMembers {
   background-color: lightgrey;
   width: 200px;
   padding: 5px 20px 20px 20px;
   margin: auto;
+  margin-top: 20px;
   border-radius: 10px;
+  overflow-y: auto;
+  max-height: 300px;
 }
 
 #footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  color: white;
+  color: rgb(126, 126, 155);
   background-color: rgb(20, 20, 30);
   text-align: center;
 }
@@ -227,10 +237,27 @@ img {
   color: white;
 }
 
+#banner h3 {
+  margin: 0;
+  font-size: 20px;
+  padding-top:20px;
+  padding-left: 60px;
+  color: white;
+}
+
 .homeContent {
 
 }
 
 .MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input {
   width: 250px;
+}
+
+input[type="text"] {
+  height: 35px;
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 30px;
 }

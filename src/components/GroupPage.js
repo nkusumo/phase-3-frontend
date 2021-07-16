@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 
 function GroupPage({currentName, currentUser}) {
 
+  document.title = "Netflix and Choose | Group Page"
   const [currentGroup, setCurrentGroup] = useState('');
   const [groupList, setGroupList] = useState([]);
 

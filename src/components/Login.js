@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 function Login({userList, handleLogin, handleNewUser}) {
+  document.title = "Netflix and Choose | Login"
 
   const [userForm, setUserForm] = useState(false)
   

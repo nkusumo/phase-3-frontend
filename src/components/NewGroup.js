@@ -53,7 +53,7 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
     let movieSearch = movieName
     setMovieName('')
     let searchString = movieSearch.replace(" ","%20")
-    fetch(`https://movie-database-imdb-alternative.p.rapidapi.com/?s=${searchString}&page=1&r=json`, {
+    fetch(`https://movie-database-imdb-alternative.p.rapidapi.com/?s=${searchString}&page=1&type=movie&r=json`, {
       "method": "GET",
       "headers": {
         "x-rapidapi-key": apiKey,
@@ -62,6 +62,7 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
       })
       .then(resp => resp.json())
       .then((data) => {
+        setMovieChoiceList([])
         setMovieChoiceList(data.Search)
         setMovieChoiceDisplay(true)
         console.log(data.Search)
@@ -138,14 +139,16 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
             {userList.map(user => <MenuItem value={user.id} key={user.id}>{user.name}</MenuItem>)}
           </Select>
         </FormControl>
-      <h3>Group Members</h3>
+        <div className="groupMembers">
+      <h2>Group Members</h2>
         {groupMembers.map(id => <p key={id}>{getUserNames(id)}&nbsp;&nbsp;{id !== currentUser ? <button onClick={() => removeMember(id)}>X</button> : null}</p>)}
+        </div>
       <h3>Add your movie candidates</h3>
       <form onSubmit={searchMovies}>
         <input type="text" onChange={handleMovie} value={movieName}></input>
         <input type="submit" value="Search Movie"></input>
       </form>
-        {movieChoiceDisplay ?  <div><h2>Which Movie Did You Want?</h2>{movieChoiceList.map(movie => <MovieChoices key={movie.Title} movie={movie} pickMovie={pickMovie}/>) }</div>: null}
+        {movieChoiceDisplay ?  <div class><h2>Which Movie Did You Want?</h2>{movieChoiceList.map(movie => <MovieChoices key={movie.Title} movie={movie} pickMovie={pickMovie}/>) }</div>: null}
       {movieList.length > 0 ?
       <div>
         <h2>Picked Movies:</h2>
