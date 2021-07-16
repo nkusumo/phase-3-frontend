@@ -8,9 +8,11 @@ import NewGroup from './NewGroup'
 import Footer from "./Footer";
 import Banner from "./Banner";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
 
-  const apiKey = ""
+  const apiKey = "4320e7da5amsh0f22276bddd87ebp17a630jsn08c7117a237d"
 
   const [currentUser, setCurrentUser] = useState('');
   const [currentName, setCurrentName] = useState('')
@@ -25,10 +27,15 @@ function App() {
   let history = useHistory()
 
   function handleLogin(e) {
-    setCurrentUser(e.target.value)
-    let user = userList.find(user => user.id === parseInt(e.target.value))
+    console.log(e)
+    setCurrentUser(e.value)
+    let user = userList.find(user => user.id === e.value)
     setCurrentName(user.name)
     history.push('/group-page')
+    // setCurrentUser(e.target.value)
+    // let user = userList.find(user => user.id === parseInt(e.target.value))
+    // setCurrentName(user.name)
+    // history.push('/group-page')
   }
 
   function handleLogout() {

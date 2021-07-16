@@ -45,17 +45,17 @@ code {
   color: white;
 }
 
-#logout {
-  color: white;
-  padding: 18px 24px;
+button#logout {
+  background-color: rgb(20, 20, 30);
+  /* padding: 18px 24px; */
   text-align: center;
-  text-decoration: none;
+  /* text-decoration: none; */
   font-size: 16px;
-  margin: 6px 2px;
+  /* margin: 6px 2px; */
   transition-duration: 0.4s;
   cursor: pointer;
+  border: none;
   border-radius: 8px;
-  align-self: flex-start;
   margin-left: auto;
 }
 
@@ -192,6 +192,7 @@ img {
 .flexVoteChild {
   margin-left: 20px;
   margin-right: 20px;
+  width: 450px
 }
 
 #groupMembers {

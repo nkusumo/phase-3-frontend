@@ -3,6 +3,8 @@ import { useHistory } from "react-router";
 import MovieCard from './MovieCard'
 import MovieChoices from './MovieChoices'
 
+import Select from 'react-select'
+
 function NewGroup({userList, currentName, currentUser, apiKey}) {
 
   // controlled inputs states
@@ -21,10 +23,10 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
   }
 
   function addMember(e) {
-    if(groupMembers.includes(e.target.value)) {
+    if(groupMembers.includes(e.value)) {
       window.alert("This person is already in the group!")
     } else {
-      let newMembers = [...groupMembers, e.target.value]
+      let newMembers = [...groupMembers, e.value]
       setGroupMembers(newMembers);
     }
   }
@@ -123,16 +125,19 @@ function NewGroup({userList, currentName, currentUser, apiKey}) {
     }
   }
 
+  const options = userList.map(user => ({value: user.id, label: user.name}))
+  
   return (
     <div id="newgroup">
       <button onClick={createNewGroup}>Create Group</button><br /><br/>
       <label>Enter your new group name:</label>&nbsp;&nbsp;&nbsp;&nbsp;
       <input type="text" onChange={handleGroupName} value={groupName}></input><br /><br />
       <label>Add your group members:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-      <select className="userSelect" onChange={addMember} defaultValue="default">
+      {/* <select className="userSelect" onChange={addMember} defaultValue="default">
         <option value="default" disabled>Select here</option>
         {userList.map(user => <option value={user.id} key={user.id}>{user.name}</option>)}
-      </select>
+      </select> */}
+      <Select options={options} onChange={addMember} />
       <h3>Group Members</h3>
         {groupMembers.map(id => <p key={id}>{getUserNames(id)}&nbsp;&nbsp;{id !== currentUser ? <button onClick={() => removeMember(id)}>X</button> : null}</p>)}
       <h3>Add your movie candidates</h3>
